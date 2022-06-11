@@ -65,13 +65,16 @@ public class User_Interface implements ActionListener
 			default:
 				break;
 		}
-		comboBox.addActionListener(new ActionListener()
+		if(comboBox!=null)
 		{
-			public void actionPerformed(ActionEvent e)
+			comboBox.addActionListener(new ActionListener()
 			{
-				id=(String) comboBox.getSelectedItem();
-			}
-		});
+				public void actionPerformed(ActionEvent e)
+				{
+					id=(String) comboBox.getSelectedItem();
+				}
+			});
+		}
 	}
 	public void origin_panel()
 	{
