@@ -62,13 +62,15 @@ public class User_Interface implements ActionListener
 			default:
 				break;
 		}
-		comboBox.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
+		if(comboBox!=null){
+			comboBox.addActionListener(new ActionListener()
 			{
-				id=(String) comboBox.getSelectedItem();
-			}
-		});
+				public void actionPerformed(ActionEvent e)
+				{
+					id=(String) comboBox.getSelectedItem();
+				}
+			});
+		}
 	}
 	public void origin_panel()
 	{
@@ -115,7 +117,7 @@ public class User_Interface implements ActionListener
             public void actionPerformed(ActionEvent e)
             {
                 password=new String(passTF.getPassword());
-                user=new User(accTF.getText(),nameTF.getText(),password,id);
+                user=new User(accTF.getText(),password,nameTF.getText(),id);
 				if(check_signUp_Input()){user.sign_up();id_Pane(check_id());}
 			    else{sign_up();}
             }
@@ -152,7 +154,7 @@ public class User_Interface implements ActionListener
                 user=new User(accTF.getText(),password);
 				if(check_login_Input())
                 {
-					id=user.getIdentity();
+					//id=user.getIdentity();
 					JOptionPane.showMessageDialog(null, "登入成功\n"+user.getName()+" 歡迎回來~");
                     id_Pane(check_id());
                 }

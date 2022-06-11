@@ -23,8 +23,7 @@ public class Admin_UI  extends User_Interface
     public Admin_UI (User user)
     {
         super();
-        setstudent(user);
-        admin=(Admin) user;
+        setadmin(user);
         passTF=new JTextField(user.getPassword());
         nameTF=new JTextField(user.getName());
     }
@@ -600,5 +599,5 @@ public class Admin_UI  extends User_Interface
 		frame.add(panel);
 		frame.setVisible(true);
 	}
-    public void setstudent(User user){this.user=new Student(user.getAccount(), user.getPassword(), user.getName(),user.getIdentity(),Integer.toString(user.getFines()));}
+    public void setadmin(User user){this.user=new Admin(user.getAccount(), user.getPassword(), user.getName(),user.getIdentity(),Integer.toString(user.getFines()));}
 }
