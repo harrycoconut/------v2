@@ -1,11 +1,77 @@
 import javax.swing.*;
+import java.awt.event.*;
+
 public class Admin_UI  extends Member_UI
+{
+    private Admin admin;
     public Admin_UI (User user)
     {
         super(user);
     }
-    public void setID(User user){this.user=new Admin(user.getAccount(), user.getPassword(), user.getName(),user.getIdentity(),Integer.toString(user.getFines()));}
+    public void actionPerformed(ActionEvent e)
+	{
+		switch (Integer.parseInt(e.getActionCommand()))
+		{
+			case 0:
+                frame.remove(panel);
+				Home();
+				break;
+			case 1:
+                sear_Book();
+				break;
+			case 2:
+                return_Book();
+			   break;
+            case 3:
+                inform();
+                break;
+            case 4:
+                history();
+                break;
+            case 5:
+                manage_Book();
+                break;
+            case 6:
+                break;
+			default:
+				break;
+		}
+	}
+    public void Home()
+    {
+		panel= new JPanel();
 
+		JButton sear_Book=new JButton("書籍查詢");
+		JButton return_Book=new JButton("還書");
+		JButton inform=new JButton("個人資訊");
+		JButton history=new JButton("歷史紀錄");
+        JButton manage=new JButton("書籍管理");
+		JButton payfine=new JButton("繳納罰金");
+
+		sear_Book.setActionCommand("1");
+		return_Book.setActionCommand("2");
+		inform.setActionCommand("3");
+		history.setActionCommand("4");
+        manage.setActionCommand("5");
+        payfine.setActionCommand("6");
+
+		sear_Book.addActionListener(this);
+		return_Book.addActionListener(this);
+		inform.addActionListener(this);
+		history.addActionListener(this);
+        manage.addActionListener(this);
+		payfine.addActionListener(this);
+
+		panel.add(sear_Book);
+		panel.add(return_Book);
+		panel.add(inform);
+		panel.add(history);
+        panel.add(manage);
+        panel.add(payfine);
+
+        frame.add(panel);
+        frame.setVisible(true);
+    }
     public void manage_Book()
     {   
         frame.remove(panel);
@@ -73,11 +139,11 @@ public class Admin_UI  extends Member_UI
             public void actionPerformed(ActionEvent e)
             {
                 if(admin.addBook(ISBNTF.getText(), titleTF.getText(), authorTF.getText(), publisherTF.getText())){manage_Book();}
-                else{addBook();index_removeBook();}
+                else{addBook();addBook();}
             }
         });
         back=new JButton("返回");
-		back.setActionCommand("4");
+		back.setActionCommand("5");
 		back.addActionListener(this);
 
 		panel.add(confirm);
@@ -105,7 +171,7 @@ public class Admin_UI  extends Member_UI
             }
         });
         back=new JButton("返回");
-		back.setActionCommand("4");
+		back.setActionCommand("5");
 		back.addActionListener(this);
 
 		panel.add(confirm);
@@ -175,7 +241,7 @@ public class Admin_UI  extends Member_UI
             }
         });
         back=new JButton("返回");
-		back.setActionCommand("4");
+		back.setActionCommand("5");
 		back.addActionListener(this);
 
 		panel.add(confirm);
@@ -210,7 +276,7 @@ public class Admin_UI  extends Member_UI
             }
             public boolean check_length()
             {
-                if(ISBNTF.getText().length()!=12){JOptionPane.showMessageDialog(null, "ISBN長度需等於12!","警告",2);return false;}
+                if(ISBNTF.getText().length()!=8){JOptionPane.showMessageDialog(null, "ISBN長度需等於8!","警告",2);return false;}
                 else{return true;}
             }
         });
@@ -228,5 +294,10 @@ public class Admin_UI  extends Member_UI
 		frame.add(panel);
 		frame.setVisible(true);
 	}
-    public void setstudent(User user){this.user=new Student(user.getAccount(), user.getPassword(), user.getName(),user.getIdentity(),Integer.toString(user.getFines()));}
+    
+    public void setID(User user)
+    {
+        admin=new Admin(user.getAccount(), user.getPassword(), user.getName(),user.getIdentity(),Integer.toString(user.getFines()));
+        this.user=new Admin(user.getAccount(), user.getPassword(), user.getName(),user.getIdentity(),Integer.toString(user.getFines()));
+    }
 }

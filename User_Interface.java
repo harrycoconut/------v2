@@ -204,12 +204,13 @@ public class User_Interface implements ActionListener
                 Staff_UI staff_UI=new Staff_UI(user);
                 staff_UI.Home();
 				break;
-            /*case 3:
+            case 3:
                 frame.dispose();
                 Admin_UI admin_UI=new Admin_UI(user);
                 admin_UI.Home();
-                break; */
+                break;
             default:
+				frame.remove(panel);
                 origin_panel();
                 break;
         }

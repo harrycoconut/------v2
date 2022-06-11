@@ -18,7 +18,7 @@ public class Admin extends Member
 		Book book=new Book(ISBN,title,author,publisher,"in_Library");
 		if(ISBN.isBlank()||title.isBlank()||author.isBlank()||publisher.isBlank()){JOptionPane.showMessageDialog(null, "輸入值不能為空!","警告",2);return false;}
 		else if(findISBN(ISBN)!=-1){JOptionPane.showMessageDialog(null,"此書已經在書庫中!","錯誤",0);return false;}
-		else if(book.getISBN().length()!=12){JOptionPane.showMessageDialog(null, "ISBN長度需等於12!","警告",2);return false;}
+		else if(book.getISBN().length()!=8){JOptionPane.showMessageDialog(null, "ISBN長度需等於8!","警告",2);return false;}
 		else
 		{
 			record_Data.addBook(book);
@@ -29,6 +29,7 @@ public class Admin extends Member
 	}
 	public void removeBook(String ISBN)
 	{
+		findISBN(ISBN);
 		books=book_Data.readBooks();
 		books.remove(ISBN_Index);
 		book_Data.rewriteBooks(books);
@@ -36,6 +37,7 @@ public class Admin extends Member
 	}
 	public void reviseBook(Book book)
 	{
+		findISBN(book.getISBN());
 		books=book_Data.readBooks();
 		books.set(ISBN_Index,book);
 		book_Data.rewriteBooks(books);

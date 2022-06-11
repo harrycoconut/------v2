@@ -31,7 +31,6 @@ public class Seach_Book
         {
             if(books.get(i).getTitle().equals(title))
             {
-                
                 find_title.add(books.get(i));
             }
         }
@@ -75,10 +74,10 @@ public class Seach_Book
     public void P(){if(find_publisher.toString()!=null){search_book.addAll(find_publisher);}}
     public void I(){if(find_ISBN.toString()!=null){search_book.addAll(find_ISBN);}}
 
-    public void retainT(){if(find_title.toString()!=null){search_book.retainAll(find_title);}}
-    public void retainA(){if(find_title.toString()!=null){search_book.retainAll(find_author);}}
-    public void retainP(){if(find_title.toString()!=null){search_book.retainAll(find_publisher);}}
-    public void retainI(){if(find_title.toString()!=null){search_book.retainAll(find_ISBN);}}
+    public void retainT(){if(find_title!=null){search_book.retainAll(find_title);}}
+    public void retainA(){if(find_title!=null){search_book.retainAll(find_author);}}
+    public void retainP(){if(find_title!=null){search_book.retainAll(find_publisher);}}
+    public void retainI(){if(find_title!=null){search_book.retainAll(find_ISBN);}}
 
     public ArrayList<Book> getBook()
     {

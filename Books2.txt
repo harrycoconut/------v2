@@ -1,7 +1,3 @@
-987654321123	title	author	publisher	in_Library	null
-987654320123	Javaå¥½é›£	author	publisher	in_Library	null
-987654321123	Javaå¥½	author	publisher	in_Library	null
-987654322123	Javaå¥½é›£	autho	publisher	in_Library	null
-987654323123	Javaå¥½é›£	author	publishe	in_Library	null
-987654324123	Javaå¥½é›£	author	publisher	in_Library	null
-110403033123	Java	CY	NCU	in_Library	110403033	2022-06-11
+20220611	Java	³¯¥òÅk	NCU	in_Library	null
+20220612	Hello~Java	Lynn	NCU	in_Library	null
+20220613	Python	±i®a³Í	NCU	in_Library	null

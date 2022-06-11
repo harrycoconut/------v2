@@ -7,16 +7,16 @@ public abstract class Member_UI  extends User_Interface
 {
     JScrollPane jScrollPane;
     JButton button;
-    private Admin admin;
-    private Book book;
-    private JTextField nameTF,passTF;
-    private JTextField ISBNTF,titleTF,authorTF,publisherTF;
-    private JLabel ISBNLB=new JLabel("ISBN:");
-    private JLabel titleLB=new JLabel("書名:");
-    private JLabel authorLB=new JLabel("作者:");
-    private JLabel publisherLB=new JLabel("出版商:");
-    private String title,author,publisher,ISBN;
-    private ArrayList<Book> books;
+
+    protected Book book;
+    protected JTextField nameTF,passTF;
+    protected JTextField ISBNTF,titleTF,authorTF,publisherTF;
+    protected JLabel ISBNLB=new JLabel("ISBN:");
+    protected JLabel titleLB=new JLabel("書名:");
+    protected JLabel authorLB=new JLabel("作者:");
+    protected JLabel publisherLB=new JLabel("出版商:");
+    protected String title,author,publisher,ISBN;
+    protected ArrayList<Book> books;
 
 	public int w=1000,h=750;
 
@@ -97,8 +97,8 @@ public abstract class Member_UI  extends User_Interface
                 author=authorTF.getText().isBlank()?"\t":authorTF.getText();
                 publisher=publisherTF.getText().isBlank()?"\t":publisherTF.getText();
                 ISBN=ISBNTF.getText().isBlank()?"\t":ISBNTF.getText();
-                
-                if(titleTF.getText().equals("\t")&&authorTF.getText().equals("\t")&&publisherTF.getText().equals("\t")&&ISBNTF.getText().equals("\t"))
+            
+                if(titleTF.getText().isEmpty()&&authorTF.getText().isEmpty()&&publisherTF.getText().isEmpty()&&ISBNTF.getText().isEmpty())
                 {
                     JOptionPane.showMessageDialog(null, authorTF.getText().toString()+"輸入值不能為空!","警告",2);
                     sear_Book();
