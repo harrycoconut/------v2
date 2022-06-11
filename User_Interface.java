@@ -14,11 +14,10 @@ public class User_Interface implements ActionListener
 	JLabel idLB=new JLabel("身分");
     JButton confirm=new JButton("確認");
     JButton back=new JButton("返回");
-	private JTextField accTF,nameTF;
-	private JPasswordField passTF;
-
+	protected JTextField accTF,nameTF;
+	protected JPasswordField passTF;
+	protected String password,id;
 	protected User user;
-	private String password,id;
 	public int w=700,h=650;
 
 	public static void main(String[] args)

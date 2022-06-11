@@ -32,6 +32,7 @@ public class Admin_UI  extends Member_UI
                 manage_Book();
                 break;
             case 6:
+                payFines();
                 break;
 			default:
 				break;
@@ -294,7 +295,41 @@ public class Admin_UI  extends Member_UI
 		frame.add(panel);
 		frame.setVisible(true);
 	}
-    
+    public void payFines()
+	{
+		frame.remove(panel);
+		panel=new JPanel();
+
+        accTF=new JTextField(16);
+        JLabel fineLB=new JLabel("金額");
+        JTextField fineTF=new JTextField(16);
+
+		panel.add(accLB);
+        panel.add(accTF);
+        panel.add(fineLB);
+        panel.add(fineTF);
+
+
+        confirm=new JButton("確認");
+		confirm.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                if(accTF.getText().isBlank()||fineTF.getText().isBlank()){JOptionPane.showMessageDialog(null, "輸入值不能為空!","警告",2);payFines();}
+                else if(admin.payFines(accTF.getText(),Integer.parseInt(fineTF.getText()))){frame.remove(panel);Home();}
+                else{payFines();}
+            }
+        });
+        back=new JButton("返回");
+		back.setActionCommand("0");
+		back.addActionListener(this);
+
+		panel.add(confirm);
+		panel.add(back);
+		frame.add(panel);
+		frame.setVisible(true);
+	}
+
     public void setID(User user)
     {
         admin=new Admin(user.getAccount(), user.getPassword(), user.getName(),user.getIdentity(),Integer.toString(user.getFines()));
