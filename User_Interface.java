@@ -8,17 +8,17 @@ public class User_Interface implements ActionListener
 	JFrame frame;
 	JPanel panel,panel2,panel3;
 	JComboBox<String> comboBox;
-	JLabel accLB=new JLabel("±b¸¹");
-	JLabel passLB=new JLabel("±K½X");
-	JLabel nameLB=new JLabel("©m¦W");
-	JLabel idLB=new JLabel("¨­¤À");
-    JButton confirm=new JButton("½T»{");
-    JButton back=new JButton("ªğ¦^");
+	JLabel accLB=new JLabel("å¸³è™Ÿ");
+	JLabel passLB=new JLabel("å¯†ç¢¼");
+	JLabel nameLB=new JLabel("å§“å");
+	JLabel idLB=new JLabel("èº«åˆ†");
+    JButton confirm=new JButton("ç¢ºèª");
+    JButton back=new JButton("è¿”å›");
 	protected JTextField accTF,nameTF;
 	protected JPasswordField passTF;
 	protected String password,id;
 	protected User user;
-	public int w=700,h=650;
+	public int w=500,h=400;
 
 	public static void main(String[] args)
 	{
@@ -28,18 +28,18 @@ public class User_Interface implements ActionListener
 
 	public User_Interface()
 	{
-		frame = new JFrame("¹Ï®ÑÀ]");
+		frame = new JFrame("åœ–æ›¸é¤¨");
 		frame.setResizable(false);
 		frame.setSize(w,h);
-		frame.setLocationRelativeTo(null);//¸m¤¤¶}±Ò(¨ú®ø±q¥ª¤W¶}±Ò)
+		frame.setLocationRelativeTo(null);//ç½®ä¸­é–‹å•Ÿ(å–æ¶ˆå¾å·¦ä¸Šé–‹å•Ÿ)
 		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent e)
 			{
 				int result = JOptionPane.showConfirmDialog(frame,
-						"¬O§_Ãö³¬µ{¦¡",
-						"Äµ§i",
+						"æ˜¯å¦é—œé–‰ç¨‹å¼",
+						"è­¦å‘Š",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.WARNING_MESSAGE);
 				if (result == JOptionPane.YES_OPTION){System.exit(0);}
@@ -78,9 +78,12 @@ public class User_Interface implements ActionListener
 	public void origin_panel()
 	{
 		panel= new JPanel();
+		panel.setLayout(null);
 
-		JButton log_in=new JButton("µn¤J");
-		JButton sign_up=new JButton("µù¥U");
+		JButton log_in=new JButton("ç™»å…¥");
+		log_in.setBounds(100,200,100,50);
+		JButton sign_up=new JButton("è¨»å†Š");
+		sign_up.setBounds(300,200,100,50);
 		log_in.setActionCommand("1");
 		sign_up.setActionCommand("2");
 		log_in.addActionListener(this);
@@ -98,17 +101,18 @@ public class User_Interface implements ActionListener
 		panel2= new JPanel();
 		panel3= new JPanel();
 		panel2.setLayout(new GridLayout(4,2));
+		
 		comboBox = new JComboBox<>();
 		accTF=new JTextField(16);
 		nameTF=new JTextField(16);
-		passTF=new JPasswordField(16); // «D©ú¤å±K½X¿é¤J¡F
-		comboBox.addItem("½Ğ¿ï¾Ü¨­¤À");
-		comboBox.addItem("¾Ç¥Í");
-        	comboBox.addItem("±Ğ®v");
-		comboBox.addItem("Â¾­û");
-		comboBox.addItem("ºŞ²z­û");
+		passTF=new JPasswordField(16); // éæ˜æ–‡å¯†ç¢¼è¼¸å…¥ï¼›
+		comboBox.addItem("è«‹é¸æ“‡èº«åˆ†");
+		comboBox.addItem("å­¸ç”Ÿ");
+        	comboBox.addItem("æ•™å¸«");
+		comboBox.addItem("è·å“¡");
+		comboBox.addItem("ç®¡ç†å“¡");
 
-		JLabel idenLB = new JLabel("¨­¤À");
+		JLabel idenLB = new JLabel("èº«åˆ†");
 		panel2.add(accLB);
 		panel2.add(accTF);
 		panel2.add(passLB);
@@ -118,7 +122,8 @@ public class User_Interface implements ActionListener
 		panel2.add(idenLB);
 		panel2.add(comboBox);
 
-        confirm=new JButton("½T»{");
+        confirm=new JButton("ç¢ºèª");
+		confirm.setBounds(100,300,100,30);
 		confirm.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -129,7 +134,8 @@ public class User_Interface implements ActionListener
 			    else{sign_up();}
             }
         });
-        back=new JButton("ªğ¦^");
+        back=new JButton("è¿”å›");
+		back.setBounds(300,300,100,30);
 		back.setActionCommand("0");
 		back.addActionListener(this);
 		
@@ -149,14 +155,14 @@ public class User_Interface implements ActionListener
 		panel2.setLayout(new GridLayout(2,2));
 
 		accTF = new JTextField(16);
-		passTF = new JPasswordField(16); // «D©ú¤å±K½X¿é¤J¡F
+		passTF = new JPasswordField(16); // éæ˜æ–‡å¯†ç¢¼è¼¸å…¥ï¼›
 		
 		panel2.add(accLB);
 		panel2.add(accTF);
 		panel2.add(passLB);
 		panel2.add(passTF);
 
-        confirm=new JButton("½T»{");
+        confirm=new JButton("ç¢ºèª");
         confirm.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -166,13 +172,13 @@ public class User_Interface implements ActionListener
 				if(check_login_Input())
                 {
 					id=user.getIdentity();
-					JOptionPane.showMessageDialog(null, "µn¤J¦¨¥\\n"+user.getName()+" Åwªï¦^¨Ó~");
+					JOptionPane.showMessageDialog(null, "ç™»å…¥æˆåŠŸ\n"+user.getName()+" æ­¡è¿å›ä¾†~");
                     id_Pane(check_id());
                 }
 			    else{log_in();}
             }
         });
-        back=new JButton("ªğ¦^");
+        back=new JButton("è¿”å›");
 		back.setActionCommand("0");
 		back.addActionListener(this);
 		
@@ -217,28 +223,28 @@ public class User_Interface implements ActionListener
 
     public boolean check_signUp_Input()
     {
-        if(accTF.getText().isBlank()||nameTF.getText().isBlank()||password.isBlank()||id.isBlank()){JOptionPane.showMessageDialog(null, "¿é¤J­È¤£¯à¬°ªÅ!","Äµ§i",2);return false;}
-        else if(user.find_Account()){JOptionPane.showMessageDialog(null,"¦¹±b¸¹¤w³Qµù¥U!","¿ù»~",0);return false;}
+        if(accTF.getText().isBlank()||nameTF.getText().isBlank()||password.isBlank()||id.isBlank()){JOptionPane.showMessageDialog(null, "è¼¸å…¥å€¼ä¸èƒ½ç‚ºç©º!","è­¦å‘Š",2);return false;}
+        else if(user.find_Account()){JOptionPane.showMessageDialog(null,"æ­¤å¸³è™Ÿå·²è¢«è¨»å†Š!","éŒ¯èª¤",0);return false;}
         else{return check_length();}
     }
     public boolean check_login_Input()
     {
-        if(accTF.getText().isBlank()||password.isBlank()){JOptionPane.showMessageDialog(null, "¿é¤J­È¤£¯à¬°ªÅ!","Äµ§i",2);return false;}
-        else if(user.find_Account()==false){JOptionPane.showMessageDialog(null,"¦¹±b¸¹¤£¦s¦b!","¿ù»~",0);return false;}
+        if(accTF.getText().isBlank()||password.isBlank()){JOptionPane.showMessageDialog(null, "è¼¸å…¥å€¼ä¸èƒ½ç‚ºç©º!","è­¦å‘Š",2);return false;}
+        else if(user.find_Account()==false){JOptionPane.showMessageDialog(null,"æ­¤å¸³è™Ÿä¸å­˜åœ¨!","éŒ¯èª¤",0);return false;}
         else{return user.check_password();}
     }
     public int check_id()
 	{
-		if(id.equals("¾Ç¥Í")){return 0;}
-		else if(id.equals("±Ğ®v")){return 1;}
-		else if(id.equals("Â¾­û")){return 2;}
-		else if(id.equals("ºŞ²z­û")){return 3;}
-		else{JOptionPane.showMessageDialog(null, "½Ğ¿ï¾Ü¶µ¥Ø","Äµ§i",2);return 4;}
+		if(id.equals("å­¸ç”Ÿ")){return 0;}
+		else if(id.equals("æ•™å¸«")){return 1;}
+		else if(id.equals("è·å“¡")){return 2;}
+		else if(id.equals("ç®¡ç†å“¡")){return 3;}
+		else{JOptionPane.showMessageDialog(null, "è«‹é¸æ“‡é …ç›®","è­¦å‘Š",2);return 4;}
 	}
     public boolean check_length()
 	{
-		if(accTF.getText().length()<9 ||accTF.getText().length()>16){JOptionPane.showMessageDialog(null, "±b¸¹ªø«×»İ¤¶©ó9~16!","Äµ§i",2);return false;}
-        else if(password.length()<4||password.length()>12){JOptionPane.showMessageDialog(null, "±K½Xªø«×»İ¤¶©ó4~12!","Äµ§i",2);return false;}
+		if(accTF.getText().length()<9 ||accTF.getText().length()>16){JOptionPane.showMessageDialog(null, "å¸³è™Ÿé•·åº¦éœ€ä»‹æ–¼9~16!","è­¦å‘Š",2);return false;}
+        else if(password.length()<4||password.length()>12){JOptionPane.showMessageDialog(null, "å¯†ç¢¼é•·åº¦éœ€ä»‹æ–¼4~12!","è­¦å‘Š",2);return false;}
         else{return true;}
 	}
 }
