@@ -5,5 +5,9 @@
 110403032	1212	你好	管理員	0
 110403030	0033	003	學生	0
 1104030332	1515	454564	學生	0
-1104030331	1112	1111	管理員	0
-1104030336	Name	1111	管理員	0
+109403037	z	0316	學生	0
+108403037	z	1111	管理員	0
+testtest0	password	name1	學生	0
+thisisacc	thispass	thisisname1	學生	0
+thisisacc2	thispass2	thisname2	學生	0
+thisisacc3	thispass3	thisisname3	學生	0

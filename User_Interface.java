@@ -1,9 +1,12 @@
 import java.awt.event.*;
 import javax.swing.*;
+
+import java.awt.*;
+
 public class User_Interface implements ActionListener
 {
 	JFrame frame;
-	JPanel panel;
+	JPanel panel,panel2,panel3;
 	JComboBox<String> comboBox;
 	JLabel accLB=new JLabel("帳號");
 	JLabel passLB=new JLabel("密碼");
@@ -16,7 +19,7 @@ public class User_Interface implements ActionListener
 
 	protected User user;
 	private String password,id;
-	public int w=1000,h=750;
+	public int w=700,h=650;
 
 	public static void main(String[] args)
 	{
@@ -62,15 +65,13 @@ public class User_Interface implements ActionListener
 			default:
 				break;
 		}
-		if(comboBox!=null){
-			comboBox.addActionListener(new ActionListener()
+		comboBox.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
 			{
-				public void actionPerformed(ActionEvent e)
-				{
-					id=(String) comboBox.getSelectedItem();
-				}
-			});
-		}
+				id=(String) comboBox.getSelectedItem();
+			}
+		});
 	}
 	public void origin_panel()
 	{
@@ -92,24 +93,28 @@ public class User_Interface implements ActionListener
 	{
 		frame.remove(panel);
 		panel= new JPanel();
+		panel2= new JPanel();
+		panel3= new JPanel();
+		panel2.setLayout(new GridLayout(4,2));
 		comboBox = new JComboBox<>();
 		accTF=new JTextField(16);
 		nameTF=new JTextField(16);
 		passTF=new JPasswordField(16); // 非明文密碼輸入；
 		comboBox.addItem("請選擇身分");
 		comboBox.addItem("學生");
-        comboBox.addItem("教師");
+        	comboBox.addItem("教師");
 		comboBox.addItem("職員");
 		comboBox.addItem("管理員");
 
-		
-		panel.add(accLB);
-		panel.add(accTF);
-		panel.add(nameLB);
-		panel.add(nameTF);
-		panel.add(passLB);
-		panel.add(passTF);
-		panel.add(comboBox);
+		JLabel idenLB = new JLabel("身分");
+		panel2.add(accLB);
+		panel2.add(accTF);
+		panel2.add(passLB);
+		panel2.add(passTF);
+		panel2.add(nameLB);
+		panel2.add(nameTF);
+		panel2.add(idenLB);
+		panel2.add(comboBox);
 
         confirm=new JButton("確認");
 		confirm.addActionListener(new ActionListener()
@@ -125,9 +130,11 @@ public class User_Interface implements ActionListener
         back=new JButton("返回");
 		back.setActionCommand("0");
 		back.addActionListener(this);
-
-		panel.add(confirm);
-		panel.add(back);
+		
+		panel.add(panel2);
+		panel3.add(confirm);
+		panel3.add(back);
+		panel.add(panel3);
 		frame.add(panel);
 		frame.setVisible(true);
 	}
@@ -136,14 +143,16 @@ public class User_Interface implements ActionListener
 	{
 		frame.remove(panel);
 		panel= new JPanel();
+		panel2= new JPanel();
+		panel2.setLayout(new GridLayout(2,2));
 
 		accTF = new JTextField(16);
 		passTF = new JPasswordField(16); // 非明文密碼輸入；
 		
-		panel.add(accLB);
-		panel.add(accTF);
-		panel.add(passLB);
-		panel.add(passTF);
+		panel2.add(accLB);
+		panel2.add(accTF);
+		panel2.add(passLB);
+		panel2.add(passTF);
 
         confirm=new JButton("確認");
         confirm.addActionListener(new ActionListener()
@@ -154,7 +163,7 @@ public class User_Interface implements ActionListener
                 user=new User(accTF.getText(),password);
 				if(check_login_Input())
                 {
-					//id=user.getIdentity();
+					id=user.getIdentity();
 					JOptionPane.showMessageDialog(null, "登入成功\n"+user.getName()+" 歡迎回來~");
                     id_Pane(check_id());
                 }
@@ -165,7 +174,8 @@ public class User_Interface implements ActionListener
 		back.setActionCommand("0");
 		back.addActionListener(this);
 		
-        panel.add(confirm);
+		panel.add(panel2);
+        	panel.add(confirm);
 		panel.add(back);
 		frame.add(panel);
 		frame.setVisible(true);

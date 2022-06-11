@@ -6,16 +6,12 @@ public class User
 	private User_Data user_Data=new User_Data();
 	private Book_Data book_Data=new Book_Data();
 	private Record_Data record_Data=new Record_Data();
-
 	private ArrayList<String> user=new ArrayList<String>();
 	private ArrayList<User> users=new ArrayList<User>();
-
 	private ArrayList<Book> booklist;
 	private ArrayList<Book> books;
-
 	private ArrayList<Record> records;
 	private int accIndex;
-
 	protected int ISBN_Index,record_Index;
 	protected int rate,day,quantity;
 
@@ -37,22 +33,26 @@ public class User
 	}
 	public User(String account,String password,String name,String identity){this(account,password,name,identity,0);}//註冊新帳號用，罰金==0
 	public User(String account,String password){setAccount(account);setPassword(password);log_in();}//登入驗證帳密用
-
+	
 	public boolean find_Account()
 	{
 		accIndex=-1;
 		for(int i=0;i<user_Data.readUsers().size();i++){if(user_Data.readUsers().get(i).getAccount().equals(getAccount())){accIndex=i;break;}}
 		return accIndex==-1?false:true;
 	}
-	public int findISBN(String ISBN)
+	
+	public boolean check_password()
 	{
-		ISBN_Index=-1;
-		for(int i=0;i<book_Data.readBooks().size();i++){if(book_Data.readBooks().get(i).getISBN().equals(ISBN)){ISBN_Index=i;break;}}
-		return ISBN_Index;
+		if(user_Data.readUsers().get(accIndex).getPassword().equals(getPassword())){return true;}
+		else{JOptionPane.showMessageDialog(null, "密碼不正確!","警告",3);return false;}
 	}
-
-	
-	
+	public void log_in()
+	{
+		find_Account();
+		setName(user_Data.readUsers().get(accIndex).getName());
+		setIdentity(user_Data.readUsers().get(accIndex).getIdentity());
+		setFines(user_Data.readUsers().get(accIndex).getFines());
+	}
 	public void reviseuser_Data(User user)
 	{
 		find_Account();
@@ -61,20 +61,14 @@ public class User
 		user_Data.rewriteUsers(users);
 	}
 	public void sign_up(){JOptionPane.showMessageDialog(null,"註冊完成~");user_Data.addUser(this);}
-	public void log_in()
-	{
-		find_Account();
-		setName(user_Data.readUsers().get(accIndex).getName());
-		setIdentity(user_Data.readUsers().get(accIndex).getIdentity());
-		setFines(user_Data.readUsers().get(accIndex).getFines());
-	}
-	public boolean check_password()
-	{
-		if(user_Data.readUsers().get(accIndex).getPassword().equals(getPassword())){return true;}
-		else{JOptionPane.showMessageDialog(null, "密碼不正確!","警告",3);return false;}
-	}
 
-	
+
+	public int findISBN(String ISBN)
+	{
+		ISBN_Index=-1;
+		for(int i=0;i<book_Data.readBooks().size();i++){if(book_Data.readBooks().get(i).getISBN().equals(ISBN)){ISBN_Index=i;break;}}
+		return ISBN_Index;
+	}
 	public Book getBook(String ISBN){return book_Data.readBooks().get(ISBN_Index);}
 	public void borrowBook(Book book)
 	{

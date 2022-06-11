@@ -52,7 +52,9 @@ public class Student_UI  extends User_Interface
     public void Home()
     {
 		panel= new JPanel();
-
+		panel2=new JPanel();
+		panel2.setLayout(new GridLayout(2,2))
+;
 		JButton sear_Book=new JButton("書籍查詢");
 		JButton return_Book=new JButton("還書");
 		JButton inform=new JButton("個人資訊");
@@ -68,11 +70,17 @@ public class Student_UI  extends User_Interface
 		inform.addActionListener(this);
 		history.addActionListener(this);
 
-		panel.add(sear_Book);
-		panel.add(return_Book);
-		panel.add(inform);
-		panel.add(history);
 
+		sear_Book.setPreferredSize(new Dimension(120,40));
+		inform.setPreferredSize(new Dimension(120,40));
+		return_Book.setPreferredSize(new Dimension(120,40));
+		history.setPreferredSize(new Dimension(120,40));
+
+		panel2.add(sear_Book);
+		panel2.add(inform);
+		panel2.add(return_Book);
+		panel2.add(history);
+		panel.add(panel2);
         frame.add(panel);
         frame.setVisible(true);
     }
@@ -152,6 +160,8 @@ public class Student_UI  extends User_Interface
     public JPanel search_pane(Book book,int i)
     {
         JPanel pane=new JPanel();
+	panel2 = new JPanel();
+	panel2.setLayout(new GridLayout(4,2));
         
         JLabel ISBNLB2=new JLabel(book.getISBN());
         JLabel titleLB2=new JLabel(book.getTitle());
@@ -351,7 +361,7 @@ public class Student_UI  extends User_Interface
 		panel.add(authorLB);
 		panel.add(publisherLB);
 		panel.add(ISBNLB);
-        panel.add(periodLB);
+        	panel.add(periodLB);
 		panel.add(back);
 
 		frame.add(panel);

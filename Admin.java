@@ -9,7 +9,7 @@ public class Admin extends Member
 
 	public Admin(String account,String password,String name,String identity,String fines)
     {
-        super(account,name,password,identity,fines);
+        super(account,password,name,identity,fines);
         setQuantity();
         setDay();
     }
